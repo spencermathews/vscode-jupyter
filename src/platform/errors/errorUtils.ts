@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import { NotebookCell, NotebookCellOutput, NotebookCellOutputItem, NotebookController, WorkspaceFolder } from 'vscode';
-import { CellExecutionCreator } from '../../notebooks/execution/cellExecutionCreator.node';
-import { getDisplayPath } from '../../platform/common/platform/fs-paths.node';
-import { DataScience } from '../../platform/common/utils/localize.node';
-import { JupyterConnectError } from './jupyterConnectError.node';
+import { CellExecutionCreator } from '../../notebooks/execution/cellExecutionCreator';
+import { getDisplayPath } from '../common/platform/fs-paths';
+import { DataScience } from '../common/utils/localize';
+import { JupyterConnectError } from './jupyterConnectError';
 import { BaseError } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
@@ -79,40 +79,6 @@ export function getLastTwoLinesFromPythonTracebackWithErrorMessage(
     } else {
         return [reversedLines.length > 1 ? reversedLines[1] : '', reversedLines[0]];
     }
-}
-
-export function getLastFrameFromPythonTraceback(
-    traceback: string
-): { fileName: string; folderName: string; packageName: string } | undefined {
-    if (!traceback) {
-        return;
-    }
-    //             File "/Users/donjayamanne/miniconda3/envs/env3/lib/python3.7/site-packages/appnope/_nope.py", line 38, in C
-
-    // This parameter might be either a string or a string array
-    const fixedTraceback: string = Array.isArray(traceback) ? traceback[0] : traceback;
-    const lastFrame = fixedTraceback
-        .split('\n')
-        .map((item) => item.trim().toLowerCase())
-        .filter((item) => item.length)
-        .reverse()
-        .find(
-            (line) =>
-                line.startsWith('file ') && line.includes(', line ') && line.includes('.py') && line.includes('.py')
-        );
-    if (!lastFrame) {
-        return;
-    }
-    const file = lastFrame.substring(0, lastFrame.lastIndexOf('.py')) + '.py';
-    const parts = file.replace(/\\/g, '/').split('/');
-    const indexOfSitePackages = parts.indexOf('site-packages');
-    let packageName =
-        indexOfSitePackages >= 0 && parts.length > indexOfSitePackages + 1 ? parts[indexOfSitePackages + 1] : '';
-    const reversedParts = parts.reverse();
-    if (reversedParts.length < 2) {
-        return;
-    }
-    return { fileName: reversedParts[0], folderName: reversedParts[1], packageName };
 }
 
 export enum KernelFailureReason {
@@ -605,4 +571,38 @@ export function createOutputWithErrorMessageForDisplay(errorMessage: string) {
             stack: `\u001b[1;31m${errorMessage.trim()}`
         })
     ]);
+}
+
+export function getLastFrameFromPythonTraceback(
+    traceback: string
+): { fileName: string; folderName: string; packageName: string } | undefined {
+    if (!traceback) {
+        return;
+    }
+    //             File "/Users/donjayamanne/miniconda3/envs/env3/lib/python3.7/site-packages/appnope/_nope.py", line 38, in C
+
+    // This parameter might be either a string or a string array
+    const fixedTraceback: string = Array.isArray(traceback) ? traceback[0] : traceback;
+    const lastFrame = fixedTraceback
+        .split('\n')
+        .map((item) => item.trim().toLowerCase())
+        .filter((item) => item.length)
+        .reverse()
+        .find(
+            (line) =>
+                line.startsWith('file ') && line.includes(', line ') && line.includes('.py') && line.includes('.py')
+        );
+    if (!lastFrame) {
+        return;
+    }
+    const file = lastFrame.substring(0, lastFrame.lastIndexOf('.py')) + '.py';
+    const parts = file.replace(/\\/g, '/').split('/');
+    const indexOfSitePackages = parts.indexOf('site-packages');
+    let packageName =
+        indexOfSitePackages >= 0 && parts.length > indexOfSitePackages + 1 ? parts[indexOfSitePackages + 1] : '';
+    const reversedParts = parts.reverse();
+    if (reversedParts.length < 2) {
+        return;
+    }
+    return { fileName: reversedParts[0], folderName: reversedParts[1], packageName };
 }

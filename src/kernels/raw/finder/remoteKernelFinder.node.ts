@@ -15,15 +15,15 @@ import {
     LiveKernelConnectionMetadata,
     RemoteKernelSpecConnectionMetadata
 } from '../../../kernels/types';
-import { PYTHON_LANGUAGE } from '../../../platform/common/constants.node';
-import { traceError } from '../../../platform/common/logger.node';
+import { PYTHON_LANGUAGE } from '../../../platform/common/constants';
+import { traceError } from '../../../platform/common/logger';
 import { IDisposableRegistry, Resource } from '../../../platform/common/types';
 import { sendKernelListTelemetry } from '../../../telemetry/kernelTelemetry.node';
 import { IInterpreterService } from '../../../platform/interpreter/contracts.node';
-import { traceDecorators } from '../../../platform/logging/index.node';
-import { ignoreLogging } from '../../../platform/logging/trace.node';
-import { captureTelemetry, sendTelemetryEvent } from '../../../telemetry/index.node';
-import { getTelemetrySafeLanguage } from '../../../telemetry/helpers.node';
+import { traceDecorators } from '../../../platform/logging';
+import { ignoreLogging } from '../../../platform/logging/trace';
+import { captureTelemetry, sendTelemetryEvent } from '../../../telemetry';
+import { getTelemetrySafeLanguage } from '../../../telemetry/helpers';
 import { Telemetry } from '../../../webviews/webview-side/common/constants';
 import { IRemoteKernelFinder } from '../types';
 import { PreferredRemoteKernelIdProvider } from './preferredRemoteKernelIdProvider.node';

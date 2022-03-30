@@ -7,16 +7,16 @@ import { inject, injectable, named } from 'inversify';
 import { CancellationToken, CancellationTokenSource, Memento } from 'vscode';
 import { IApplicationShell } from '../platform/common/application/types';
 import { createPromiseFromCancellation } from '../platform/common/cancellation.node';
-import { traceInfo, traceError, traceInfoIfCI } from '../platform/common/logger.node';
-import { getDisplayPath } from '../platform/common/platform/fs-paths.node';
+import { traceInfo, traceError, traceInfoIfCI } from '../platform/common/logger';
+import { getDisplayPath } from '../platform/common/platform/fs-paths';
 import { IMemento, GLOBAL_MEMENTO, IsCodeSpace, Resource, IDisplayOptions } from '../platform/common/types';
-import { DataScience, Common } from '../platform/common/utils/localize.node';
+import { DataScience, Common } from '../platform/common/utils/localize';
 import { IServiceContainer } from '../platform/ioc/types';
-import { traceDecorators } from '../platform/logging/index.node';
-import { ignoreLogging, logValue } from '../platform/logging/trace.node';
+import { traceDecorators } from '../platform/logging';
+import { ignoreLogging, logValue } from '../platform/logging/trace';
 import { EnvironmentType, PythonEnvironment } from '../platform/pythonEnvironments/info';
-import { sendTelemetryEvent } from '../telemetry/index.node';
-import { getTelemetrySafeHashedString } from '../telemetry/helpers.node';
+import { sendTelemetryEvent } from '../telemetry';
+import { getTelemetrySafeHashedString } from '../telemetry/helpers';
 import { Telemetry } from '../webviews/webview-side/common/constants';
 import {
     isModulePresentInEnvironmentCache,
@@ -26,7 +26,7 @@ import {
 import { ProductNames } from './installer/productNames.node';
 import { IInstaller, Product, InstallerResponse } from './installer/types';
 import { IKernelDependencyService, KernelConnectionMetadata, KernelInterpreterDependencyResponse } from './types';
-import { noop } from '../platform/common/utils/misc.node';
+import { noop } from '../platform/common/utils/misc';
 import { getResourceType } from '../platform/common/utils.node';
 import { KernelProgressReporter } from '../platform/progress/kernelProgressReporter.node';
 import { IRawNotebookSupportedService } from './raw/types';

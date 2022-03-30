@@ -13,9 +13,9 @@ import {
     IDocumentManager,
     IApplicationShell
 } from '../../platform/common/application/types';
-import { PYTHON_LANGUAGE } from '../../platform/common/constants.node';
-import { traceInfoIfCI, traceError, traceWarning, traceInfo } from '../../platform/common/logger.node';
-import { getDisplayPath } from '../../platform/common/platform/fs-paths.node';
+import { PYTHON_LANGUAGE } from '../../platform/common/constants';
+import { traceInfoIfCI, traceError, traceWarning, traceInfo } from '../../platform/common/logger';
+import { getDisplayPath } from '../../platform/common/platform/fs-paths';
 import { CondaService } from '../../platform/common/process/condaService.node';
 import {
     IDisposableRegistry,
@@ -27,17 +27,17 @@ import {
     Resource
 } from '../../platform/common/types';
 import { waitForCondition } from '../../platform/common/utils/async';
-import { debounceAsync } from '../../platform/common/utils/decorators.node';
-import { DataScience } from '../../platform/common/utils/localize.node';
-import { noop } from '../../platform/common/utils/misc.node';
-import { StopWatch } from '../../platform/common/utils/stopWatch.node';
+import { debounceAsync } from '../../platform/common/utils/decorators';
+import { DataScience } from '../../platform/common/utils/localize';
+import { noop } from '../../platform/common/utils/misc';
+import { StopWatch } from '../../platform/common/utils/stopWatch';
 import { sendKernelListTelemetry } from '../../telemetry/kernelTelemetry.node';
 import { trackKernelResourceInformation } from '../../telemetry/telemetry.node';
 import { IInterpreterService } from '../../platform/interpreter/contracts.node';
 import { IServiceContainer } from '../../platform/ioc/types';
-import { traceDecorators } from '../../platform/logging/index.node';
+import { traceDecorators } from '../../platform/logging';
 import { EnvironmentType, PythonEnvironment } from '../../platform/pythonEnvironments/info';
-import { sendTelemetryEvent } from '../../telemetry/index.node';
+import { sendTelemetryEvent } from '../../telemetry';
 import { Telemetry } from '../../webviews/webview-side/common/constants';
 import { NotebookCellLanguageService } from '../../intellisense/cellLanguageService.node';
 import {

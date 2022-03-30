@@ -74,6 +74,7 @@
         "onNotebook:interactive"
     ],
     "main": "./out/extension.node.js",
+    "browser": "./out/extension.web.js",
     "capabilities": {
         "virtualWorkspaces": true,
         "untrustedWorkspaces": {
@@ -2063,6 +2064,7 @@
         "compiled": "deemon npm run compile",
         "kill-compiled": "deemon --kill npm run compile",
         "compile-webviews-watch": "cross-env NODE_OPTIONS=--max_old_space_size=9096 webpack --config ./build/webpack/webpack.datascience-ui.config.js --watch",
+        "compile-web-watch": "cross-env NODE_OPTIONS=--max_old_space_size=9096 webpack --config ./build/webpack/webpack.extension.web.config.js --watch",
         "compile-webviews-watchd": "deemon npm run compile-webviews-watch",
         "compile-widgetTester": "cross-env NODE_OPTIONS=--max_old_space_size=9096 webpack --config ./build/webpack/webpack.datascience-ui-widgetTester.config.js --watch",
         "kill-compile-webviews-watchd": "deemon --kill npm run compile-webviews-watch",
@@ -2121,6 +2123,7 @@
         "events": "^3.3.0",
         "fast-deep-equal": "^2.0.1",
         "font-awesome": "^4.7.0",
+        "format-util": "^1.0.5",
         "fs-extra": "^4.0.3",
         "glob": "^7.1.2",
         "hash.js": "^1.1.7",
@@ -2210,6 +2213,7 @@
         "@types/enzyme": "^3.1.14",
         "@types/enzyme-adapter-react-16": "^1.0.3",
         "@types/event-stream": "^3.3.33",
+        "@types/format-util": "^1.0.2",
         "@types/fs-extra": "^5.0.1",
         "@types/get-port": "^3.2.0",
         "@types/glob": "^5.0.35",
@@ -2225,6 +2229,7 @@
         "@types/nock": "^10.0.3",
         "@types/node": "^14.17.4",
         "@types/node-fetch": "^2.5.7",
+        "@types/path-browserify": "^1.0.0",
         "@types/pdfkit": "^0.11.0",
         "@types/promisify-node": "^0.4.0",
         "@types/react": "^16.4.14",

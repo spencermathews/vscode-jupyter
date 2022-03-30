@@ -25,9 +25,9 @@ import { Cancellation, createPromiseFromCancellation } from '../../../platform/c
 import {
     getTelemetrySafeErrorMessageFromPythonTraceback,
     getErrorMessageFromPythonTraceback
-} from '../../../platform/errors/errorUtils.node';
+} from '../../../platform/errors/errorUtils';
 import { BaseError } from '../../../platform/errors/types';
-import { traceInfo, traceError, traceVerbose, traceWarning, traceInfoIfCI } from '../../../platform/common/logger.node';
+import { traceInfo, traceError, traceVerbose, traceWarning, traceInfoIfCI } from '../../../platform/common/logger';
 import { IFileSystem } from '../../../platform/common/platform/types.node';
 import {
     IProcessServiceFactory,
@@ -37,14 +37,14 @@ import {
 } from '../../../platform/common/process/types.node';
 import { Resource, IOutputChannel, IJupyterSettings } from '../../../platform/common/types';
 import { createDeferred } from '../../../platform/common/utils/async';
-import { DataScience } from '../../../platform/common/utils/localize.node';
-import { noop, swallowExceptions } from '../../../platform/common/utils/misc.node';
+import { DataScience } from '../../../platform/common/utils/localize';
+import { noop, swallowExceptions } from '../../../platform/common/utils/misc';
 import { KernelDiedError } from '../../../platform/errors/kernelDiedError.node';
 import { KernelPortNotUsedTimeoutError } from '../../../platform/errors/kernelPortNotUsedTimeoutError.node';
 import { KernelProcessExitedError } from '../../../platform/errors/kernelProcessExitedError.node';
-import { traceDecorators } from '../../../platform/logging/index.node';
-import { ignoreLogging, TraceOptions } from '../../../platform/logging/trace.node';
-import { captureTelemetry } from '../../../telemetry/index.node';
+import { traceDecorators } from '../../../platform/logging';
+import { ignoreLogging, TraceOptions } from '../../../platform/logging/trace';
+import { captureTelemetry } from '../../../telemetry';
 import { Telemetry, KernelInterruptDaemonModule } from '../../../webviews/webview-side/common/constants';
 import { PythonKernelInterruptDaemon } from '../finder/pythonKernelInterruptDaemon.node';
 

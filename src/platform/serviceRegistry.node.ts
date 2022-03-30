@@ -9,7 +9,7 @@ import { registerTypes as commonRegisterTypes } from './common/serviceRegistry.n
 import { registerLoggerTypes } from './logging/serviceRegistry.node';
 import { registerTypes as commonRegisterTerminalTypes } from './terminals/serviceRegistry.node';
 import { registerTypes as activationRegisterTypes } from './activation/serviceRegistry.node';
-import { DataScienceStartupTime } from './common/constants.node';
+import { DataScienceStartupTime } from './common/constants';
 import { LogReplayService } from '../intellisense/logReplayService.node';
 import { Activation } from '../kernels/activation.node';
 import { CodeCssGenerator } from '../webviews/extension-side/codeCssGenerator.node';
@@ -27,7 +27,7 @@ import { INotebookWatcher } from '../webviews/extension-side/variablesView/types
 import { IExtensionSingleActivationService, IExtensionSyncActivationService } from './activation/types';
 import { ExtensionRecommendationService } from './common/extensionRecommendation.node';
 import { GlobalActivation } from './common/globalActivation.node';
-import { FileSystemPathUtils } from './common/platform/fs-paths.node';
+import { FileSystemPathUtils } from './common/platform/fs-paths';
 import { IFileSystemPathUtils } from './common/platform/types';
 import { PreReleaseChecker } from './common/prereleaseChecker.node';
 import { IDataScienceCommandListener } from './common/types';

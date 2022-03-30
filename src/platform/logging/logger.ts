@@ -5,13 +5,13 @@
 // IMPORTANT: This file should only be importing from the '../platform/logging' directory, as we
 // delete everything in '../platform' except for '../platform/logging' before running smoke tests.
 
-import * as util from 'util';
 import * as winston from 'winston';
+const format = require('format-util') as typeof import('format-util');
 import * as Transport from 'winston-transport';
-import { getFormatter } from './formatters.node';
+import { getFormatter } from './formatters';
 import { LogLevel, resolveLevelName } from './levels';
-import { getConsoleTransport, getFileTransport, isConsoleTransport } from './transports.node';
-import { Arguments } from './util.node';
+import { getConsoleTransport, getFileTransport, isConsoleTransport } from './transports';
+import { Arguments } from './util';
 
 export type LoggerConfig = {
     level?: LogLevel;
@@ -97,7 +97,7 @@ export interface ILogger {
 
 // Emit a log message derived from the args to all enabled transports.
 export function logToAll(loggers: ILogger[], logLevel: LogLevel, args: Arguments) {
-    const message = args.length === 0 ? '' : util.format(args[0], ...args.slice(1));
+    const message = args.length === 0 ? '' : format(args[0], ...args.slice(1));
     for (const logger of loggers) {
         if (logger.transports.length > 0) {
             const levelName = getLevelName(logLevel, logger.levels, isConsoleLogger(logger));

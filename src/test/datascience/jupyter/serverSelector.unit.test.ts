@@ -11,7 +11,7 @@ import { ClipboardService } from '../../../platform/common/application/clipboard
 import { IClipboard } from '../../../platform/common/application/types';
 import { ConfigurationService } from '../../../platform/common/configuration/service.node';
 import { IJupyterSettings } from '../../../platform/common/types';
-import { DataScience } from '../../../platform/common/utils/localize.node';
+import { DataScience } from '../../../platform/common/utils/localize';
 import { MultiStepInput, MultiStepInputFactory } from '../../../platform/common/utils/multiStepInput.node';
 import { MockInputBox } from '../mockInputBox';
 import { MockQuickPick } from '../mockQuickPick';
@@ -23,7 +23,7 @@ import { MockEncryptedStorage } from '../mockEncryptedStorage';
 import { JupyterServerUriStorage } from '../../../kernels/jupyter/launcher/serverUriStorage.node';
 import { JupyterServerSelector } from '../../../kernels/jupyter/serverSelector.node';
 import { JupyterUriProviderRegistration } from '../../../kernels/jupyter/jupyterUriProviderRegistration.node';
-import { Settings } from '../../../platform/common/constants.node';
+import { Settings } from '../../../platform/common/constants';
 
 /* eslint-disable , @typescript-eslint/no-explicit-any */
 suite('DataScience - Jupyter Server URI Selector', () => {

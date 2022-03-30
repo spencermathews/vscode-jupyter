@@ -13,7 +13,7 @@ import { PersistentState, PersistentStateFactory } from '../../../platform/commo
 import { FileSystem } from '../../../platform/common/platform/fileSystem.node';
 import { IPythonExecutionFactory } from '../../../platform/common/process/types.node';
 import { IConfigurationService, IJupyterSettings } from '../../../platform/common/types';
-import { Common, DataScience } from '../../../platform/common/utils/localize.node';
+import { Common, DataScience } from '../../../platform/common/utils/localize';
 import { IKernel, RemoteKernelSpecConnectionMetadata } from '../../../platform/../kernels/types';
 import { IInterpreterService } from '../../../platform/interpreter/contracts.node';
 import { CDNWidgetScriptSourceProvider } from '../../../kernels/ipywidgets-message-coordination/cdnWidgetScriptSourceProvider.node';

@@ -30,6 +30,17 @@
             "problemMatcher": ["$tsc-watch", "$ts-checker-webpack-watch"]
         },
         {
+            "label": "Compile Web Extension",
+            "type": "npm",
+            "script": "compile-web-watch",
+            "isBackground": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$tsc-watch", "$ts-checker-webpack-watch"]
+        },
+        {
             "label": "Run Unit Tests",
             "type": "npm",
             "script": "test:unittests",

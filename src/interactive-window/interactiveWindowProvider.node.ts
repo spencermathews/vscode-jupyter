@@ -11,7 +11,7 @@ import {
     IDocumentManager,
     IWorkspaceService
 } from '../platform/common/application/types';
-import { traceInfo } from '../platform/common/logger.node';
+import { traceInfo } from '../platform/common/logger';
 import { IFileSystem } from '../platform/common/platform/types.node';
 
 import {
@@ -24,14 +24,14 @@ import {
     InteractiveWindowMode,
     Resource
 } from '../platform/common/types';
-import { chainable } from '../platform/common/utils/decorators.node';
-import * as localize from '../platform/common/utils/localize.node';
-import { noop } from '../platform/common/utils/misc.node';
+import { chainable } from '../platform/common/utils/decorators';
+import * as localize from '../platform/common/utils/localize';
+import { noop } from '../platform/common/utils/misc';
 import { IServiceContainer } from '../platform/ioc/types';
 import { KernelConnectionMetadata } from '../kernels/types';
 import { INotebookControllerManager } from '../notebooks/types';
 import { InteractiveWindow } from './interactiveWindow.node';
-import { JVSC_EXTENSION_ID } from '../platform/common/constants.node';
+import { JVSC_EXTENSION_ID } from '../platform/common/constants';
 import {
     IInteractiveWindow,
     IInteractiveWindowDebugger,
@@ -40,7 +40,7 @@ import {
 } from './types';
 import { getInteractiveWindowTitle } from './identity.node';
 import { createDeferred } from '../platform/common/utils/async';
-import { getDisplayPath } from '../platform/common/platform/fs-paths.node';
+import { getDisplayPath } from '../platform/common/platform/fs-paths';
 import { INotebookExporter } from '../kernels/jupyter/types';
 import { IDataScienceErrorHandler } from '../platform/errors/types';
 import { IExportDialog } from '../platform/export/types';

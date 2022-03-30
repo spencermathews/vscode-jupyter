@@ -1,6 +1,6 @@
 import { JupyterNotebookView } from '../../notebooks/constants';
-import * as path from 'path';
-import { EXTENSION_ROOT_DIR } from '../constants.node';
+import { EXTENSION_ROOT_DIR } from '../constants';
+import { pathJoin } from './platform/path.common';
 
 export const PYTHON_LANGUAGE = 'python';
 export const MARKDOWN_LANGUAGE = 'markdown';
@@ -62,7 +62,7 @@ export function isUnitTestExecution(): boolean {
     return process.env.VSC_JUPYTER_UNIT_TEST === '1';
 }
 
-export * from '../constants.node';
+export * from '../constants';
 
 export * from '../../webviews/webview-side/common/constants';
 
@@ -86,9 +86,9 @@ export namespace Settings {
 }
 
 export namespace DataFrameLoading {
-    export const SysPath = path.join(EXTENSION_ROOT_DIR, 'pythonFiles', 'vscode_datascience_helpers', 'dataframes');
+    export const SysPath = pathJoin(EXTENSION_ROOT_DIR, 'pythonFiles', 'vscode_datascience_helpers', 'dataframes');
     export const DataFrameSysImport = `import sys\nsys.path.append("${SysPath.replace(/\\/g, '\\\\')}")`;
-    export const ScriptPath = path.join(SysPath, 'vscodeDataFrame.py');
+    export const ScriptPath = pathJoin(SysPath, 'vscodeDataFrame.py');
 
     export const DataFrameInfoFunc = '_VSCODE_getDataFrameInfo';
     export const DataFrameRowFunc = '_VSCODE_getDataFrameRows';
@@ -100,14 +100,9 @@ export namespace DataFrameLoading {
 }
 
 export namespace GetVariableInfo {
-    export const SysPath = path.join(
-        EXTENSION_ROOT_DIR,
-        'pythonFiles',
-        'vscode_datascience_helpers',
-        'getVariableInfo'
-    );
+    export const SysPath = pathJoin(EXTENSION_ROOT_DIR, 'pythonFiles', 'vscode_datascience_helpers', 'getVariableInfo');
     export const GetVariableInfoSysImport = `import sys\nsys.path.append("${SysPath.replace(/\\/g, '\\\\')}")`;
-    export const ScriptPath = path.join(SysPath, 'vscodeGetVariableInfo.py');
+    export const ScriptPath = pathJoin(SysPath, 'vscodeGetVariableInfo.py');
     export const VariableInfoFunc = '_VSCODE_getVariableInfo';
     export const VariablePropertiesFunc = '_VSCODE_getVariableProperties';
     export const VariableTypesFunc = '_VSCODE_getVariableTypes';
@@ -118,6 +113,6 @@ export namespace GetVariableInfo {
 }
 
 export namespace AddRunCellHook {
-    export const SysPath = path.join(EXTENSION_ROOT_DIR, 'pythonFiles', 'vscode_datascience_helpers', 'kernel');
-    export const ScriptPath = path.join(SysPath, 'addRunCellHook.py');
+    export const SysPath = pathJoin(EXTENSION_ROOT_DIR, 'pythonFiles', 'vscode_datascience_helpers', 'kernel');
+    export const ScriptPath = pathJoin(SysPath, 'addRunCellHook.py');
 }

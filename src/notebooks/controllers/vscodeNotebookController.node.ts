@@ -28,10 +28,10 @@ import {
     IDocumentManager,
     IApplicationShell
 } from '../../platform/common/application/types';
-import { PYTHON_LANGUAGE } from '../../platform/common/constants.node';
+import { PYTHON_LANGUAGE } from '../../platform/common/constants';
 import { disposeAllDisposables } from '../../platform/common/helpers.node';
-import { traceInfoIfCI, traceInfo, traceVerbose, traceWarning } from '../../platform/common/logger.node';
-import { getDisplayPath } from '../../platform/common/platform/fs-paths.node';
+import { traceInfoIfCI, traceInfo, traceVerbose, traceWarning } from '../../platform/common/logger';
+import { getDisplayPath } from '../../platform/common/platform/fs-paths';
 import {
     IBrowserService,
     IConfigurationService,
@@ -42,20 +42,20 @@ import {
     IPathUtils
 } from '../../platform/common/types';
 import { createDeferred } from '../../platform/common/utils/async';
-import { chainable } from '../../platform/common/utils/decorators.node';
-import { DataScience, Common } from '../../platform/common/utils/localize.node';
-import { noop } from '../../platform/common/utils/misc.node';
+import { chainable } from '../../platform/common/utils/decorators';
+import { DataScience, Common } from '../../platform/common/utils/localize';
+import { noop } from '../../platform/common/utils/misc';
 import {
     initializeInteractiveOrNotebookTelemetryBasedOnUserAction,
     sendKernelTelemetryEvent
 } from '../../telemetry/telemetry.node';
 import { IServiceContainer } from '../../platform/ioc/types';
-import { traceDecorators } from '../../platform/logging/index.node';
-import { TraceOptions } from '../../platform/logging/trace.node';
-import { ConsoleForegroundColors } from '../../platform/logging/_global.node';
+import { traceDecorators } from '../../platform/logging';
+import { TraceOptions } from '../../platform/logging/trace';
+import { ConsoleForegroundColors } from '../../platform/logging/_global';
 import { EnvironmentType } from '../../platform/pythonEnvironments/info';
 import { Telemetry, Commands } from '../../webviews/webview-side/common/constants';
-import { displayErrorsInCell } from '../../platform/errors/errorUtils.node';
+import { displayErrorsInCell } from '../../platform/errors/errorUtils';
 import { IDataScienceErrorHandler, WrappedError } from '../../platform/errors/types';
 import { IPyWidgetMessages } from '../../platform/messageTypes';
 import { NotebookCellLanguageService } from '../../intellisense/cellLanguageService.node';
@@ -81,7 +81,7 @@ import {
     PythonKernelConnectionMetadata
 } from '../../kernels/types';
 import { InteractiveWindowView } from '../constants';
-import { CellExecutionCreator } from '../execution/cellExecutionCreator.node';
+import { CellExecutionCreator } from '../execution/cellExecutionCreator';
 import { isJupyterNotebook, traceCellMessage, updateNotebookDocumentMetadata } from '../helpers.node';
 import { KernelDeadError } from '../../platform/errors/kernelDeadError.node';
 import { DisplayOptions } from '../../kernels/displayOptions.node';

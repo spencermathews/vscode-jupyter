@@ -11,11 +11,11 @@ import {
 } from '../../kernels/types';
 import { INotebookControllerManager } from '../../notebooks/types';
 import { disposeAllDisposables } from '../common/helpers.node';
-import { traceInfo } from '../common/logger.node';
+import { traceInfo } from '../common/logger';
 import { IDisposable, IDisposableRegistry, IExtensions } from '../common/types';
 import { PromiseChain } from '../common/utils/async';
 import { IKernelSocket as ExtensionKernelSocket } from '../../kernels/types';
-import { sendTelemetryEvent } from '../../telemetry/index.node';
+import { sendTelemetryEvent } from '../../telemetry';
 import { ApiAccessService } from './apiAccessService.node';
 import {
     ActiveKernel,
@@ -25,10 +25,11 @@ import {
     KernelConnectionMetadata,
     WebSocketData
 } from './extension';
-import { Telemetry } from '../common/constants.node';
+import { Telemetry } from '../common/constants';
+import { IExportedKernelServiceFactory } from './types';
 
 @injectable()
-export class JupyterKernelServiceFactory {
+export class JupyterKernelServiceFactory implements IExportedKernelServiceFactory {
     private readonly chainedApiAccess = new PromiseChain();
     private readonly extensionApi = new Map<string, IExportedKernelService>();
     constructor(

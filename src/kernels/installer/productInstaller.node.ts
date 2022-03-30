@@ -16,11 +16,11 @@ import {
     ProductInstallStatus,
     ProductType
 } from './types';
-import { traceDecorators } from '../../platform/logging/index.node';
-import { logValue } from '../../platform/logging/trace.node';
+import { traceDecorators } from '../../platform/logging';
+import { logValue } from '../../platform/logging/trace';
 import { PythonEnvironment } from '../../platform/pythonEnvironments/info';
 import { IApplicationShell, IWorkspaceService } from '../../platform/common/application/types';
-import { traceError } from '../../platform/common/logger.node';
+import { traceError } from '../../platform/common/logger';
 import { IPythonExecutionFactory, IProcessServiceFactory } from '../../platform/common/process/types.node';
 import {
     IConfigurationService,
@@ -30,13 +30,13 @@ import {
     IOutputChannel,
     InterpreterUri
 } from '../../platform/common/types';
-import { isResource, noop } from '../../platform/common/utils/misc.node';
+import { isResource, noop } from '../../platform/common/utils/misc';
 import { IServiceContainer } from '../../platform/ioc/types';
-import { sendTelemetryEvent } from '../../telemetry/index.node';
+import { sendTelemetryEvent } from '../../telemetry';
 import { InterpreterPackages } from '../../telemetry/interpreterPackages.node';
 import { getInterpreterHash } from '../../platform/pythonEnvironments/info/interpreter.node';
 import { Telemetry } from '../../webviews/webview-side/common/constants';
-import { STANDARD_OUTPUT_CHANNEL } from '../../platform/common/constants.node';
+import { STANDARD_OUTPUT_CHANNEL } from '../../platform/common/constants';
 import { sleep } from '../../platform/common/utils/async';
 
 /**

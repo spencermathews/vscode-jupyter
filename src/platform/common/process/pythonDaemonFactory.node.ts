@@ -10,9 +10,9 @@ import {
     StreamMessageWriter
 } from 'vscode-jsonrpc/node';
 
-import { EXTENSION_ROOT_DIR } from '../../constants.node';
+import { EXTENSION_ROOT_DIR } from '../../constants';
 import { PythonEnvironment } from '../../pythonEnvironments/info';
-import { traceDecorators, traceError, traceVerbose } from '../logger.node';
+import { traceDecorators, traceError, traceVerbose } from '../logger';
 import { IPlatformService } from '../platform/types';
 import { IDisposable, IDisposableRegistry } from '../types';
 import { createDeferred } from '../utils/async';

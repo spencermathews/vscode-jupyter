@@ -3,15 +3,15 @@
 'use strict';
 
 import * as winston from 'winston';
-import { isCI } from '../common/constants.node';
+import { isCI } from '../common/constants';
 import { IOutputChannel } from '../common/types';
-import { CallInfo } from '../common/utils/decorators.node';
-import { getFormatter } from './formatters.node';
+import { CallInfo } from '../common/utils/decorators';
+import { getFormatter } from './formatters';
 import { LogLevel, resolveLevelName } from './levels';
-import { configureLogger, createLogger, getPreDefinedConfiguration, logToAll } from './logger.node';
-import { createTracingDecorator, LogInfo, TraceOptions, tracing as _tracing } from './trace.node';
-import { getFileTransport, getJupyterOutputChannelTransport } from './transports.node';
-import { Arguments } from './util.node';
+import { configureLogger, createLogger, getPreDefinedConfiguration, logToAll } from './logger';
+import { createTracingDecorator, LogInfo, TraceOptions, tracing as _tracing } from './trace';
+import { getJupyterOutputChannelTransport } from './transports';
+import { Arguments } from './util';
 
 const globalLogger = createLogger();
 initialize();
@@ -59,12 +59,6 @@ export function setLoggingLevel(level: LogLevel | 'off') {
             globalLogger.level = levelName;
         }
     }
-}
-
-export function addLogfile(logfile: string) {
-    const formatter = getFormatter();
-    const transport = getFileTransport(logfile, formatter);
-    globalLogger.add(transport);
 }
 
 // Register the output channel transport the logger will log into.

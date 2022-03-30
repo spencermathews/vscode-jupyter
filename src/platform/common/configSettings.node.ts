@@ -9,11 +9,11 @@ import {
     Uri,
     WorkspaceConfiguration
 } from 'vscode';
-import '../common/extensions.node';
+import './extensions';
 import { LogLevel } from '../logging/levels';
 import { IWorkspaceService } from './application/types';
 import { WorkspaceService } from './application/workspace.node';
-import { isTestExecution } from './constants.node';
+import { isTestExecution } from './constants';
 import {
     IExperiments,
     ILoggingSettings,
@@ -25,7 +25,7 @@ import {
     Resource,
     WidgetCDNs
 } from './types';
-import { debounceSync } from './utils/decorators.node';
+import { debounceSync } from './utils/decorators';
 import { SystemVariables } from './variables/systemVariables.node';
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */

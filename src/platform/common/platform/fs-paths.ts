@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import * as nodepath from 'path';
+import * as nodepath from 'path-browserify';
 import { Uri, WorkspaceFolder } from 'vscode';
 import { getOSType, OSType } from '../utils/platform';
 import { IExecutables, IFileSystemPaths, IFileSystemPathUtils } from './types';

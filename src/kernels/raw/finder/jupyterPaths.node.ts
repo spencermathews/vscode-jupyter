@@ -16,7 +16,7 @@ import {
 } from '../../../platform/common/types';
 import { tryGetRealPath } from '../../../platform/common/utils.node';
 import { IEnvironmentVariablesProvider } from '../../../platform/common/variables/types';
-import { traceDecorators } from '../../../platform/logging/index.node';
+import { traceDecorators } from '../../../platform/logging';
 
 const winJupyterPath = path.join('AppData', 'Roaming', 'jupyter', 'kernels');
 const linuxJupyterPath = path.join('.local', 'share', 'jupyter', 'kernels');

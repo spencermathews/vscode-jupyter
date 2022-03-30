@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
-import type { IExtensionApi } from '../platform/api.node';
+import type { IExtensionApi } from '../platform/api';
 import { disposeAllDisposables } from '../platform/common/helpers.node';
 import type { IDisposable } from '../platform/common/types';
 import { clearPendingChainedUpdatesForTests } from '../notebooks/execution/notebookUpdater.node';
@@ -8,7 +8,7 @@ import { clearPendingTimers, IExtensionTestApi, PYTHON_PATH, setPythonPathInWork
 import { IS_SMOKE_TEST, JVSC_EXTENSION_ID_FOR_TESTS } from './constants';
 import { sleep } from './core';
 import { startJupyterServer } from './datascience/notebook/helper';
-import { PythonExtension } from '../platform/common/constants.node';
+import { PythonExtension } from '../platform/common/constants';
 
 export * from './constants';
 export * from './ciConstants';

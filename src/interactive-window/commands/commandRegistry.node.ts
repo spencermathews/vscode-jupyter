@@ -18,7 +18,7 @@ import {
     IDocumentManager,
     IWorkspaceService
 } from '../../platform/common/application/types';
-import { traceError } from '../../platform/common/logger.node';
+import { traceError } from '../../platform/common/logger';
 import { IFileSystem } from '../../platform/common/platform/types.node';
 
 import {
@@ -27,14 +27,14 @@ import {
     IDisposable,
     IOutputChannel
 } from '../../platform/common/types';
-import { DataScience } from '../../platform/common/utils/localize.node';
-import { isUri, noop } from '../../platform/common/utils/misc.node';
+import { DataScience } from '../../platform/common/utils/localize';
+import { isUri, noop } from '../../platform/common/utils/misc';
 import { IInterpreterService } from '../../platform/interpreter/contracts.node';
 import { LogLevel } from '../../platform/logging/levels';
-import { captureTelemetry, sendTelemetryEvent } from '../../telemetry/index.node';
+import { captureTelemetry, sendTelemetryEvent } from '../../telemetry';
 import { EventName } from '../../telemetry/constants';
 import { ExportCommands } from './exportCommands.node';
-import { JUPYTER_OUTPUT_CHANNEL, Identifiers, Commands, Telemetry } from '../../platform/common/constants.node';
+import { JUPYTER_OUTPUT_CHANNEL, Identifiers, Commands, Telemetry } from '../../platform/common/constants';
 import { DataViewerDependencyService } from '../../webviews/extension-side/dataviewer/dataViewerDependencyService.node';
 import {
     IDataViewerFactory,

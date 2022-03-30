@@ -6,13 +6,13 @@
 // delete everything in '../platform' except for '../platform/logging' before running smoke tests.
 
 import * as logform from 'logform';
-import * as path from 'path';
 import { OutputChannel } from 'vscode';
 import * as winston from 'winston';
 import * as Transport from 'winston-transport';
-import { EXTENSION_ROOT_DIR } from '../constants.node';
+import { pathIsAbsolute, pathJoin } from '../common/platform/path.common';
+import { EXTENSION_ROOT_DIR } from '../constants';
 import { LogLevel, resolveLevel } from './levels';
-import { Arguments } from './util.node';
+import { Arguments } from './util';
 
 const formattedMessage = Symbol.for('message');
 
@@ -100,9 +100,11 @@ export function getJupyterOutputChannelTransport(channel: OutputChannel, formatt
 
 // Create a file-targeting transport that can be added to a winston logger.
 export function getFileTransport(logfile: string, formatter: logform.Format): Transport {
-    if (!path.isAbsolute(logfile)) {
-        logfile = path.join(EXTENSION_ROOT_DIR, logfile);
+    if (!pathIsAbsolute(logfile)) {
+        logfile = pathJoin(EXTENSION_ROOT_DIR, logfile);
     }
+
+    // Not sure if this works in web situation
     return new winston.transports.File({
         format: formatter,
         filename: logfile,

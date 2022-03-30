@@ -21,12 +21,12 @@ import {
     getKernelRegistrationInfo
 } from '../../../platform/../kernels/helpers.node';
 import { PlatformService } from '../../../platform/common/platform/platformService.node';
-import { EXTENSION_ROOT_DIR } from '../../../platform/constants.node';
+import { EXTENSION_ROOT_DIR } from '../../../platform/constants';
 import { FileSystem } from '../../../platform/common/platform/fileSystem.node';
 import type { KernelSpec } from '@jupyterlab/services';
 import { EnvironmentType, PythonEnvironment } from '../../../platform/pythonEnvironments/info';
 import { IPythonExtensionChecker } from '../../../platform/api/types';
-import { PYTHON_LANGUAGE } from '../../../platform/common/constants.node';
+import { PYTHON_LANGUAGE } from '../../../platform/common/constants';
 import { getOSType } from '../../common';
 import { EventEmitter, Memento, Uri } from 'vscode';
 import { IDisposable, IExtensionContext } from '../../../platform/common/types';
@@ -34,7 +34,7 @@ import { getInterpreterHash } from '../../../platform/pythonEnvironments/info/in
 import { OSType } from '../../../platform/common/utils/platform';
 import { disposeAllDisposables } from '../../../platform/common/helpers.node';
 import { KernelConnectionMetadata, LocalKernelConnectionMetadata } from '../../../platform/../kernels/types';
-import { getDisplayPath } from '../../../platform/common/platform/fs-paths.node';
+import { getDisplayPath } from '../../../platform/common/platform/fs-paths';
 import { arePathsSame } from '../../../platform/common/platform/fileUtils.node';
 import { JupyterPaths } from '../../../kernels/raw/finder/jupyterPaths.node';
 import { LocalKernelFinder } from '../../../kernels/raw/finder/localKernelFinder.node';

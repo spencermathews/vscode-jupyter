@@ -3,12 +3,12 @@
 import { inject, injectable, optional } from 'inversify';
 import * as path from 'path';
 import { ConfigurationChangeEvent, Disposable, Event, EventEmitter, FileSystemWatcher, Uri } from 'vscode';
-import { TraceOptions } from '../../logging/trace.node';
+import { TraceOptions } from '../../logging/trace';
 import { sendFileCreationTelemetry } from '../../../telemetry/envFileTelemetry.node';
 import { IWorkspaceService } from '../application/types';
-import { traceDecorators, traceInfoIfCI, traceVerbose } from '../logger.node';
+import { traceDecorators, traceInfoIfCI, traceVerbose } from '../logger';
 import { IDisposableRegistry } from '../types';
-import { InMemoryCache } from '../utils/cacheUtils.node';
+import { InMemoryCache } from '../utils/cacheUtils';
 import { EnvironmentVariables, IEnvironmentVariablesProvider, IEnvironmentVariablesService } from './types';
 
 const CACHE_DURATION = 60 * 60 * 1000;

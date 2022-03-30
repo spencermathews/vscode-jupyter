@@ -5,9 +5,9 @@
 
 import { inject, injectable } from 'inversify';
 import { Uri } from 'vscode';
-import { TraceOptions } from '../../logging/trace.node';
+import { TraceOptions } from '../../logging/trace';
 import { IWorkspaceService } from '../application/types';
-import { traceDecorators } from '../logger.node';
+import { traceDecorators } from '../logger';
 import { IDisposableRegistry } from '../types';
 import { IEnvironmentVariablesProvider } from '../variables/types';
 import { ProcessService } from './proc.node';

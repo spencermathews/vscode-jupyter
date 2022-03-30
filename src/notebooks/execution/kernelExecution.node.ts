@@ -8,13 +8,13 @@ import { CellExecutionFactory } from './cellExecution.node';
 import { CellExecutionQueue } from './cellExecutionQueue.node';
 import { KernelMessage } from '@jupyterlab/services';
 import { IApplicationShell } from '../../platform/common/application/types';
-import { traceInfo, traceInfoIfCI, traceWarning } from '../../platform/common/logger.node';
+import { traceInfo, traceInfoIfCI, traceWarning } from '../../platform/common/logger';
 import { IDisposable, IDisposableRegistry } from '../../platform/common/types';
 import { createDeferred, waitForPromise } from '../../platform/common/utils/async';
-import { StopWatch } from '../../platform/common/utils/stopWatch.node';
+import { StopWatch } from '../../platform/common/utils/stopWatch';
 import { CellHashProviderFactory } from '../../interactive-window/editor-integration/cellHashProviderFactory.node';
 import { trackKernelResourceInformation, sendKernelTelemetryEvent } from '../../telemetry/telemetry.node';
-import { captureTelemetry } from '../../telemetry/index.node';
+import { captureTelemetry } from '../../telemetry';
 import { Telemetry } from '../../webviews/webview-side/common/constants';
 import { CellOutputDisplayIdTracker } from './cellDisplayIdTracker.node';
 import {
@@ -25,7 +25,7 @@ import {
     NotebookCellRunState
 } from '../../kernels/types';
 import { traceCellMessage } from '../helpers.node';
-import { getDisplayPath } from '../../platform/common/platform/fs-paths.node';
+import { getDisplayPath } from '../../platform/common/platform/fs-paths';
 import { getAssociatedNotebookDocument } from '../controllers/kernelSelector.node';
 
 /**

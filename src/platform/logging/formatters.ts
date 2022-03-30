@@ -3,7 +3,7 @@
 'use strict';
 
 import { format } from 'winston';
-import { isTestExecution } from '../common/constants.node';
+import { isTestExecution } from '../common/constants';
 import { getLevel, LogLevel, LogLevelName } from './levels';
 
 const TIMESTAMP = 'HH:mm:ss';
