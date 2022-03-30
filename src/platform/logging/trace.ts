@@ -9,7 +9,13 @@ import { sendTelemetryEvent } from '../../telemetry';
 import { LogLevel } from './levels';
 import { ILogger, logToAll } from './logger';
 import { argsToLogString, returnValueToLogString } from './util';
-const homeAsLowerCase = (require('untildify')('~') || '').toLowerCase();
+
+// untildify isn't allowed in the browser, so only use it in node
+declare var BROWSER: boolean;
+let homeAsLowerCase = '';
+if (BROWSER) {
+    homeAsLowerCase = (require('untildify')('~') || '').toLowerCase();
+}
 
 // The information we want to log.
 export enum TraceOptions {

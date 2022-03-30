@@ -3,6 +3,7 @@
 'use strict';
 
 const path = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const tsconfig_paths_webpack_plugin = require('tsconfig-paths-webpack-plugin');
 const constants = require('../constants');
 const common = require('./common');
@@ -45,7 +46,11 @@ const config = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                            // disable type checker - we will use it in fork plugin
+                            transpileOnly: true
+                        }
                     }
                 ]
             },
@@ -96,7 +101,14 @@ const config = {
         '@opentelemetry/tracing',
         'applicationinsights-native-metrics'
     ], // Don't bundle these
-    plugins: [...common.getDefaultPlugins('extension')],
+    plugins: [
+        ...common.getDefaultPlugins('extension'),
+        new ForkTsCheckerWebpackPlugin(),
+        new webpack.DefinePlugin({
+            // Definitions...
+            BROWSER: JSON.stringify(true)
+        })
+    ],
     resolve: {
         extensions: ['.ts', '.js'],
         plugins: [new tsconfig_paths_webpack_plugin.TsconfigPathsPlugin({ configFile: configFileName })]

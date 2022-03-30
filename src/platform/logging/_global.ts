@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 'use strict';
 
-import * as winston from 'winston';
 import { isCI } from '../common/constants';
 import { IOutputChannel } from '../common/types';
 import { CallInfo } from '../common/utils/decorators';
