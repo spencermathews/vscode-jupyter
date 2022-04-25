@@ -35,6 +35,7 @@ import { IFileSystem } from '../../../platform/common/platform/types.node';
 import { JupyterServerUriStorage } from '../../../kernels/jupyter/launcher/serverUriStorage';
 import { FileSystem } from '../../../platform/common/platform/fileSystem.node';
 import { RemoteKernelSpecsCacheKey } from '../../../kernels/kernelFinder.base';
+import { computeUriHash } from '../../../kernels/jupyter/jupyterUtils';
 
 suite(`Remote Kernel Finder`, () => {
     let disposables: Disposable[] = [];
@@ -50,6 +51,7 @@ suite(`Remote Kernel Finder`, () => {
     let sessionCreatedEvent: EventEmitter<Kernel.IKernelConnection>;
     let sessionUsedEvent: EventEmitter<Kernel.IKernelConnection>;
     const connInfo: IJupyterConnection = {
+        url: 'http://foobar',
         type: 'jupyter',
         localLaunch: false,
         baseUrl: 'http://foobar',
@@ -291,13 +293,15 @@ suite(`Remote Kernel Finder`, () => {
             kernelSpec: python3spec,
             baseUrl: connInfo.baseUrl,
             kind: 'startUsingRemoteKernelSpec',
-            id: '2'
+            id: '2',
+            serverHash: computeUriHash(connInfo.url)
         };
         const invalidKernel: RemoteKernelSpecConnectionMetadata = {
             kernelSpec: python3spec,
             baseUrl: 'dude',
             kind: 'startUsingRemoteKernelSpec',
-            id: '3'
+            id: '3',
+            serverHash: computeUriHash(connInfo.url)
         };
         await memento.update(RemoteKernelSpecsCacheKey, [validKernel, invalidKernel]);
         const uri = Uri.file('/usr/foobar/foo.ipynb');
