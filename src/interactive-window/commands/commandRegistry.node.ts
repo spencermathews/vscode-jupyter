@@ -30,7 +30,7 @@ import {
 import { DataScience } from '../../platform/common/utils/localize';
 import { isUri, noop } from '../../platform/common/utils/misc';
 import { IInterpreterService } from '../../platform/interpreter/contracts';
-import { captureTelemetry, sendTelemetryEvent } from '../../telemetry';
+import { captureTelemetry, publicLog2 } from '../../telemetry';
 import { EventName } from '../../telemetry/constants';
 import { JUPYTER_OUTPUT_CHANNEL, Identifiers, Commands, Telemetry } from '../../platform/common/constants';
 import {
@@ -540,7 +540,7 @@ export class CommandRegistry implements IDisposable, IExtensionSingleActivationS
         return this.commandManager.executeCommand('outline.focus');
     }
     private async onVariablePanelShowDataViewerRequest(request: IShowDataViewerFromVariablePanel) {
-        sendTelemetryEvent(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_REQUEST);
+        publicLog2(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_REQUEST);
         if (
             this.debugService?.activeDebugSession &&
             this.variableProvider &&
@@ -573,10 +573,10 @@ export class CommandRegistry implements IDisposable, IExtensionSingleActivationS
                 if (columnSize && (await this.dataViewerChecker.isRequestedColumnSizeAllowed(columnSize))) {
                     const title: string = `${DataScience.dataExplorerTitle()} - ${jupyterVariable.name}`;
                     await this.dataViewerFactory.create(jupyterVariableDataProvider, title);
-                    sendTelemetryEvent(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_SUCCESS);
+                    publicLog2(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_SUCCESS);
                 }
             } catch (e) {
-                sendTelemetryEvent(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_ERROR, undefined, undefined, e);
+                publicLog2(EventName.OPEN_DATAVIEWER_FROM_VARIABLE_WINDOW_ERROR, undefined, undefined, e);
                 traceError(e);
                 void this.errorHandler.handleError(e);
             }

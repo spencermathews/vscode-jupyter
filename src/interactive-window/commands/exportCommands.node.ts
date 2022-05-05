@@ -14,7 +14,7 @@ import { IDisposable } from '../../platform/common/types';
 import { DataScience } from '../../platform/common/utils/localize';
 import { isUri } from '../../platform/common/utils/misc';
 import { PythonEnvironment } from '../../platform/pythonEnvironments/info';
-import { sendTelemetryEvent } from '../../telemetry';
+import { publicLog2 } from '../../telemetry';
 import { getActiveInteractiveWindow } from '../helpers';
 import { getNotebookMetadata, isPythonNotebook } from '../../notebooks/helpers';
 import { INotebookControllerManager } from '../../notebooks/types';
@@ -107,7 +107,7 @@ export class ExportCommands implements IExportCommands, IDisposable {
                 this.controllers.getSelectedNotebookController(sourceDocument)?.connection.interpreter ||
                 this.controllers.getPreferredNotebookController(sourceDocument)?.connection.interpreter;
             if (exportMethod) {
-                sendTelemetryEvent(Telemetry.ExportNotebookAsCommand, undefined, { format: exportMethod });
+                publicLog2(Telemetry.ExportNotebookAsCommand, { format: exportMethod });
             }
         }
 
@@ -122,7 +122,7 @@ export class ExportCommands implements IExportCommands, IDisposable {
             if (pickedItem !== undefined) {
                 pickedItem.handler();
             } else {
-                sendTelemetryEvent(Telemetry.ClickedExportNotebookAsQuickPick);
+                publicLog2(Telemetry.ClickedExportNotebookAsQuickPick);
             }
         }
     }
@@ -138,7 +138,7 @@ export class ExportCommands implements IExportCommands, IDisposable {
                 label: DataScience.exportPythonQuickPickLabel(),
                 picked: true,
                 handler: () => {
-                    sendTelemetryEvent(Telemetry.ClickedExportNotebookAsQuickPick, undefined, {
+                    publicLog2(Telemetry.ClickedExportNotebookAsQuickPick, {
                         format: ExportFormat.python
                     });
                     void this.commandManager.executeCommand(Commands.ExportAsPythonScript, sourceDocument, interpreter);
@@ -152,7 +152,7 @@ export class ExportCommands implements IExportCommands, IDisposable {
                     label: DataScience.exportHTMLQuickPickLabel(),
                     picked: false,
                     handler: () => {
-                        sendTelemetryEvent(Telemetry.ClickedExportNotebookAsQuickPick, undefined, {
+                        publicLog2(Telemetry.ClickedExportNotebookAsQuickPick, {
                             format: ExportFormat.html
                         });
                         void this.commandManager.executeCommand(
@@ -167,7 +167,7 @@ export class ExportCommands implements IExportCommands, IDisposable {
                     label: DataScience.exportPDFQuickPickLabel(),
                     picked: false,
                     handler: () => {
-                        sendTelemetryEvent(Telemetry.ClickedExportNotebookAsQuickPick, undefined, {
+                        publicLog2(Telemetry.ClickedExportNotebookAsQuickPick, {
                             format: ExportFormat.pdf
                         });
                         void this.commandManager.executeCommand(

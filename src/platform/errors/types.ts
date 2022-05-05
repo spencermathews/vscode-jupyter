@@ -129,6 +129,34 @@ export type TelemetryErrorProperties = {
     pythonErrorPackage?: string;
 };
 
+export type TelemetryErrorPropertiesClassification = {
+    failed: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * Node stacktrace without PII.
+     */
+    stackTrace: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * A reason that we generate (e.g. kerneldied, noipykernel, etc), more like a category of the error.
+     */
+    failureCategory?: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * Further sub classification of the error. E.g. kernel died due to the fact that zmq is not installed properly.
+     */
+    failureSubCategory?: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * Hash of the file name that contains the file in the last frame (from Python stack trace).
+     */
+    pythonErrorFile?: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * Hash of the folder that contains the file in the last frame (from Python stack trace).
+     */
+    pythonErrorFolder?: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+    /**
+     * Hash of the module that contains the file in the last frame (from Python stack trace).
+     */
+    pythonErrorPackage?: { classification: 'SystemMetadata'; purpose: 'PerformanceAndHealth' };
+};
+
 export const IDataScienceErrorHandler = Symbol('IDataScienceErrorHandler');
 export interface IDataScienceErrorHandler {
     /**

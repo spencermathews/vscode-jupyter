@@ -10,7 +10,7 @@ import { Telemetry } from '../platform/common/constants';
 import '../platform/common/extensions';
 import { IJupyterExtensionBanner, IPersistentStateFactory, IConfigurationService } from '../platform/common/types';
 import * as localize from '../platform/common/utils/localize';
-import { sendTelemetryEvent, captureTelemetry } from '../telemetry';
+import { publicLog2, captureTelemetry } from '../telemetry';
 
 export enum InteractiveShiftEnterStateKeys {
     ShowBanner = 'InteractiveShiftEnterBanner'
@@ -65,7 +65,7 @@ export class InteractiveShiftEnterBanner implements IJupyterExtensionBanner {
             return;
         }
 
-        sendTelemetryEvent(Telemetry.ShiftEnterBannerShown);
+        publicLog2(Telemetry.ShiftEnterBannerShown);
         const response = await this.appShell.showInformationMessage(this.bannerMessage, ...this.bannerLabels);
         switch (response) {
             case this.bannerLabels[InteractiveShiftEnterLabelIndex.Yes]: {
