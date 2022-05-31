@@ -12,7 +12,7 @@
         "ms-toolsai.jupyter-renderers"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/Microsoft/vscode-jupyter",
+    "homepage": "xhttps://github.com/Microsoft/vscode-jupyter",
     "repository": {
         "type": "git",
         "url": "https://github.com/Microsoft/vscode-jupyter"
