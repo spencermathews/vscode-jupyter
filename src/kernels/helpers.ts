@@ -1100,10 +1100,7 @@ export function getDisplayNameOrNameOfKernelConnection(kernelConnection: KernelC
     }
     switch (kernelConnection.kind) {
         case 'connectToLiveRemoteKernel': {
-            const notebookPath = removeNotebookSuffixAddedByExtension(
-                kernelConnection.kernelModel?.notebook?.path || kernelConnection.kernelModel?.model?.path || ''
-            );
-            return notebookPath ? `${oldDisplayName} (${notebookPath})` : oldDisplayName;
+            return oldDisplayName;
         }
         case 'startUsingRemoteKernelSpec':
         case 'startUsingLocalKernelSpec': {

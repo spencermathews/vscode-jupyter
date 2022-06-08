@@ -884,7 +884,8 @@ export class NotebookControllerManager implements INotebookControllerManager, IE
                         this.browser,
                         this.extensionChecker,
                         this.resourceConverter,
-                        this.serviceContainer
+                        this.serviceContainer,
+                        this.serverUriStorage
                     );
                     // Hook up to if this NotebookController is selected or de-selected
                     controller.onNotebookControllerSelected(

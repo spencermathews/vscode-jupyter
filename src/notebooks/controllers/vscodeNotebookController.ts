@@ -63,7 +63,8 @@ import {
     getDisplayNameOrNameOfKernelConnection,
     isPythonKernelConnection,
     areKernelConnectionsEqual,
-    getKernelRegistrationInfo
+    getKernelRegistrationInfo,
+    removeNotebookSuffixAddedByExtension
 } from '../../kernels/helpers';
 import {
     IKernel,
@@ -85,6 +86,8 @@ import { KernelConnector } from '../../kernels/kernelConnector';
 import { IVSCodeNotebookController } from './types';
 import { ILocalResourceUriConverter } from '../../kernels/ipywidgets-message-coordination/types';
 import { isCancellationError } from '../../platform/common/cancellation';
+import { IJupyterServerUriStorage } from '../../kernels/jupyter/types';
+import { computeServerId } from '../../kernels/jupyter/jupyterUtils';
 
 export class VSCodeNotebookController implements Disposable, IVSCodeNotebookController {
     private readonly _onNotebookControllerSelected: EventEmitter<{
@@ -152,7 +155,8 @@ export class VSCodeNotebookController implements Disposable, IVSCodeNotebookCont
         private readonly browser: IBrowserService,
         private readonly extensionChecker: IPythonExtensionChecker,
         scriptConverter: ILocalResourceUriConverter,
-        private serviceContainer: IServiceContainer
+        private serviceContainer: IServiceContainer,
+        uriStorage: IJupyterServerUriStorage
     ) {
         disposableRegistry.push(this);
         this._onNotebookControllerSelected = new EventEmitter<{
@@ -172,12 +176,37 @@ export class VSCodeNotebookController implements Disposable, IVSCodeNotebookCont
 
         // Fill in extended info for our controller
         this.controller.interruptHandler = this.handleInterrupt.bind(this);
-        this.controller.description = getKernelConnectionPath(kernelConnection, this.workspace);
+        this.controller.description =
+            kernelConnection.kind == 'connectToLiveRemoteKernel'
+                ? removeNotebookSuffixAddedByExtension(
+                      kernelConnection.kernelModel?.notebook?.path || kernelConnection.kernelModel?.model?.path || ''
+                  )
+                : getKernelConnectionPath(kernelConnection, this.workspace);
         this.controller.detail =
             kernelConnection.kind === 'connectToLiveRemoteKernel'
                 ? getRemoteKernelSessionInformation(kernelConnection)
                 : '';
         this.controller.kind = getKernelConnectionCategory(kernelConnection);
+        if (!isLocalConnection(kernelConnection)) {
+            uriStorage
+                .getSavedUriList()
+                .then((item) => {
+                    const uriItem = item.find((item) => computeServerId(item.uri) === kernelConnection.serverId);
+                    let displayName = uriItem?.displayName;
+                    if (uriItem && displayName) {
+                        if (displayName?.startsWith('http')) {
+                            const uri = new URL(displayName);
+                            displayName = `${uri.protocol}${uri.host}`;
+                        }
+                        if (kernelConnection.kind === 'connectToLiveRemoteKernel') {
+                            this.controller.kind = `(${displayName}) Jupyter Session`;
+                        } else {
+                            this.controller.kind = `(${displayName}) Jupyter Kernel`;
+                        }
+                    }
+                })
+                .catch(noop);
+        }
         this.controller.supportsExecutionOrder = true;
         this.controller.supportedLanguages = this.languageService.getSupportedLanguages(kernelConnection);
         // Hook up to see when this NotebookController is selected by the UI
