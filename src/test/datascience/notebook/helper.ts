@@ -432,7 +432,7 @@ async function waitForKernelToChangeImpl(
                         extension: JVSC_EXTENSION_ID
                     });
                     traceInfoIfCI(
-                        `Notebook select.kernel command switched to kernel id ${controller?.connection.kind}:${controller}`
+                        `Notebook select.kernel command switched to kernel id ${controller?.connection.kind}:${controller?.id}`
                     );
                     tryCount += 1;
                 }
